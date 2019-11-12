@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="theme-color" content="#252525">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+
+    <title>Melissa - BlackFriday</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/../assets/css/reset.css">
+    <link rel="stylesheet" href="/public/../assets/css/main.style.css">
+    <link rel="stylesheet" href="/public/../assets/css/mobile.style.css">
+    <!-- PLUGIN -->
+    <script src="/public/../assets/plugin/jquery.3.4.1.min.js"></script>
+    <!-- PLGUIN - slick - carousel -->
+    <link rel="stylesheet" href="/public/../assets/plugin/slick.css">
+    <script src="/public/../assets/plugin/slick.js"></script>
+</head>
+
+
+<body>
+    
+    <img src="/assets/img/tv-glitch2.1.gif" alt="glitch" hidden>
+    <img src="/assets/img/tv-noise2.2.gif" alt="noize" hidden>
+
+
+    <div class="tv loading">
+        
+        <div class="screen <?= $this->view->tvClass; ?>">
+
+            <div class="screen-container">
+                
+                <div class="screen-show">
+                    
+                    <div class="show show-header tx-s">
+                        <?php if( $this->view->channel ){ ?>
+
+                        <div class="channel"><?= $this->view->channel; ?></div>
+
+                        <div class="log-box">
+                            <img class="logo-top" src="/assets/img/logo-melissa-bf.svg" alt="Melissa - BlackFriday">
+                        </div>
+
+                        <div class="counter off"><span class="count">--</span>:<span class="total">--</span></div>
+
+                        <?php } else { ?>
+
+                        <img class="logo-top" src="/assets/img/logo-melissa-bf.svg" alt="Melissa - BlackFriday">
+
+                        <?php }; ?>
+                    </div>
+                    <!-- • • • • • • show-header -->
+
+
+                    <div class="show show-content">
+                        
+                        <?php
+                            //////////////// CONTEUDO DINAMICO ////////////////
+                            $this->content();
+                        ?>
+
+                    </div>
+                    <!-- • • • • • • cshow-ontent -->
+
+                    <div class="show show-footer">
+                        <?php if( @$this->view->buttons || @$this->view->links ) {
+                            if( $this->view->buttons ) {
+                                foreach ($this->view->buttons as $button) {
+                                    echo "<a class='btn ". $button['classes'] ."' href='". $button['url'] ."'>". $button['text'] ."</a>";
+                                };
+                            }
+                            else if( $this->view->links ) {
+                                foreach ($this->view->links as $link) {
+                                    echo "<a class='link tx-s' href='". $link['url'] ."'>". $link['text'] ."</a>";
+                                };
+                            }
+                        };
+                        ?>
+                    </div>
+                    <!-- • • • • • • show-footer -->
+
+                </div>
+                <!-- screen-show -->
+
+
+                <!-- //////////////////// FILTERS //////////////////// -->
+                <div class="filter lines"></div>
+                <div class="filter noize"></div>
+                <div class="filter glitch"></div>
+                <div class="filter color-lines"></div>
+
+                <div class="grid-box">
+                    <div class="grid"></div>
+                </div>
+                <!-- //////////////////// FILTERS //////////////////// -->
+
+            </div>
+            <!-- screen-container -->
+
+        </div>
+
+    </div>
+    <!-- tv -->
+    
+    
+    <!-- JS -->
+    <script src="/public/../assets/js/main-second.script.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?php if( $_SESSION['bf_player']['my_state'] != 0 ): ?>
+
+<script>
+var wishlist = <?= ($this->view->wish_list) ? $this->view->wish_list : '[]' ; ?>;
+</script>
+
+
+<div class="categories">
+    <div class="categories-list">
+        
+        <?php
+        $categorias = $this->view->categorias;
+        // $produtos   = $this->view->produtos;
+
+        foreach ($categorias as $categoria) {
+            // echo "<a class='categoria' href='/categoria/$categoria->nome/$categoria->id_categoria'>$categoria->nome</a><br>";
+            echo "<a class='category' rel='". $categoria->id_categoria ."' href='/categoria/$categoria->nome'>$categoria->nome</a>";
+        }
+        ?>
+
+    </div>
+</div>
+
+
+<div class="products">
+    <div class="products-run"></div>
+</div>
+
+
+
+
+<?php else: ?>
+
+<div class="wish-list">
+    <div class="products-run">
+        <?php
+        foreach ($this->view->wishlist as $item) {
+            $item = (object)$item;
+            
+            echo "<div class='wish-item'><div class='wish-thumb'><img src='/gallery/". $item->imagem ."' alt='". $item->nome ."'></div><div class='wish-name'>". $item->nome ."</div></div>";
+        };
+        ?>
+    </div>
+</div>
+
+<?php endif; ?>

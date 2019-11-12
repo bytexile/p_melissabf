@@ -1,0 +1,80 @@
+{
+    "agronegocio":{
+        "nome":"Agroneg\u00f3cio",
+        "text":"A Format tem o expertise para atender um dos segmentos que mais cresce no Brasil. Empreendemos solu\u00e7\u00f5es completas para o agroneg\u00f3cio: armazenamento, beneficiamento, confinamento, entre outras.",
+        "posts":{
+            "1":{"title":"Brazeiro Sementes",
+                "thumb":"image\/agronegocio\/post01_thumb.jpg",
+                "descr":"UBS \u2013 Unidade de beneficiamento de sementes<\/p>\r\n\r\nPavilh\u00e3o com 30m de v\u00e3o livre em concreto, moegas, galerias, bases para silos e equipamentos;<\/li>\r\nEscrit\u00f3rio.<\/li>\r\n <\/ul>",
+                "gallery":[
+                    {"url":"image\/agronegocio\/post01_img01-Brazeiro_Sementes.JPG"},
+                    {"url":"image\/agronegocio\/post01_img02-imagem-teste.png"},
+                    {"url":"image\/agronegocio\/post01_img03-imagem_interna.jpg"}
+                ]
+            },
+            "2":{
+                "title":"Free-stall - \u00c1rea: 8400m\u00b2",
+                "thumb":"image\/agronegocio\/post02_thumb.jpg",
+                "descr":"Free-stall completo para confinamento de vacas leiteiras.<\/p>",
+                "gallery":[
+                    {"url":"image\/agronegocio\/post02_img02-Free_stall.JPG"}
+                ]
+            },
+            "3":{
+                "title":"Coperval",
+                "thumb":"image\/agronegocio\/post03_thumb.jpg",
+                "descr":"UBS - Unidade de beneficiamento de semenes.<\/p>",
+                "gallery":[
+                    {"url":"image\/agronegocio\/post03_img03-Cooperval.jpg"}
+                ]
+            }
+        }
+    },
+    "comercial":{
+        "nome":"Comercial",
+        "text":"Desde sua funda\u00e7\u00e3o, a Format vem acumulando in\u00fameros projetos comerciais. De obras mais simples a projetos de grande complexidade, o mercado da constru\u00e7\u00e3o civil tem a nossa assinatura.",
+        "posts":{
+            "1":{
+                "title":"Vin\u00edcola Casa Valduga \u00c1rea constru\u00edda de 23.000m\u00b2.<\/span>",
+                "thumb":"image\/comercial\/post01-thumb.jpg",
+                "gallery":[
+                    {"url":"image\/comercial\/post01-img01-Casa_Valduga.jpg"}
+                ]
+            },
+            "2":{
+                "title":"Lematech Estrutura para ind\u00fastria metal\u00fargica com pilares de at\u00e9 23m de altura.<\/span>",
+                "thumb":"image\/comercial\/post02-thumb.jpg",
+                "gallery":[
+                    {"url":"image\/comercial\/post02-img01-Lematech.jpg"}
+                ]
+            },
+            "3":{
+                "title":"Postos Apolo",
+                "thumb":"image\/comercial\/post03-thumb.jpg",
+                "gallery":[
+                    {"url":"image\/comercial\/post03-img01-Apolo.JPG"}
+                ]
+            }
+        }
+    },
+    "industrial":{
+        "nome":"Industrial",
+        "text":"O progresso de muitas cidades come\u00e7a na infraestrutura. E a Format faz parte desta realidade, fornecendo suas solu\u00e7\u00f5es e co-participando de muitos projetos.",
+        "posts":{
+            "1":{
+                "title":"Ritter Alimentos",
+                "thumb":"image\/industrial\/post01-thumb.jpg",
+                "descr":"Torre para processo industrial com pilares pr\u00e9-fabricados de at\u00e9 21m de altura",
+                "gallery":[
+                    {"url":"image\/industrial\/post01-img01_Ritter.jpg"}
+                ]
+            },
+            "2":{
+                "title":"Gedoz - \u00c1rea: 4.080m\u00b2",
+                "thumb":"image\/industrial\/post02-thumb.jpg",
+                "descr":"Galp\u00e3o industrial com ponte rolante",
+                "gallery":[{"url":"image\/industrial\/post02-img01_Gedoz.JPG"}]
+            }
+        }
+    }
+}

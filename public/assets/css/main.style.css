@@ -1,0 +1,956 @@
+/* • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+FONTES
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •  */
+@font-face {
+    font-family: 'VT323';
+    src: url('../fonts/VT323-Regular.woff2') format('woff2'),
+        url('../fonts/VT323-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+
+/* • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+ELEMENTOS
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •  */
+
+/* --------------------- NOTIFICACOES */
+.notification {
+    border-radius: 6px;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    top: -13%;
+    box-shadow: 0 10px 7px rgba(0,0,0,.5);
+    user-select: none;
+    -webkit-user-drag: none;
+    
+    transition: left 1s cubic-bezier(0.2, 0.5, 0.3, 1);
+}
+.notification.hide {
+    left: -120vw;
+    transition: left .6s cubic-bezier(1, 0.5, 0.3, .2);
+    transition-delay: 1s;
+}
+
+.notification-inner {
+    float: left;
+    box-shadow: inherit;
+    padding: 10px 20px;
+    border-radius: 6px;
+
+    background-color: #525252;
+
+    animation: colored_box .5s linear infinite;
+    -webkit-animation: colored_box .5s linear infinite;
+}
+@keyframes colored_box {
+    0%   { box-shadow: 0 2px 0 #3512ff, 0 4px 0 #ff1395, 0 6px 0 #b4ff1f; }
+    50%  { box-shadow: 0 2px 0 #b4ff1f, 0 4px 0 #3512ff, 0 6px 0 #ff1395; }
+    100% { box-shadow: 0 2px 0 #ff1395, 0 4px 0 #b4ff1f, 0 6px 0 #3512ff; }
+}
+@-webkit-keyframes colored_box {
+    0%   { box-shadow: 0 2px 0 #3512ff, 0 4px 0 #ff1395, 0 6px 0 #b4ff1f; }
+    50%  { box-shadow: 0 2px 0 #b4ff1f, 0 4px 0 #3512ff, 0 6px 0 #ff1395; }
+    100% { box-shadow: 0 2px 0 #ff1395, 0 4px 0 #b4ff1f, 0 6px 0 #3512ff; }
+}
+
+.notification.error .notification-inner {
+    background-color: #bd0527;
+}
+.notification.wait .notification-inner {
+    background-color: #b79710;
+}
+.notification.alert .notification-inner {
+    background-color: #0d9214;
+}
+
+
+/* --------------------- TIPOS DE TELA */
+/* espera */
+.screen.wait,
+.screen.choice {
+    background-image: linear-gradient(to bottom,
+        #252bad,
+        #252bad
+    );
+}
+
+
+/* --------------------- FILTROS */
+.filter {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.filter.lines {
+    background-image: url("../img/tv-lines.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: .5;
+    mix-blend-mode: overlay;
+}
+
+.filter.noize {
+    background-image: url("../img/tv-noise2.2.gif");
+    background-size: 150px;
+    opacity: .10;
+    mix-blend-mode: overlay;
+
+    transition: opacity .1s;
+}
+
+.filter.glitch {
+    background-image: url("../img/tv-glitch2.1.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: .6;
+    mix-blend-mode: screen;
+
+    display: none;
+
+    transition: opacity .1s;
+}
+.hover-glitch .filter.glitch {
+    display: block;
+}
+
+.filter.color-lines {
+    background-image: linear-gradient(to right,
+        #a1a1a1 0 17%,
+        #f8f50e 17% 34%,
+        #2beeff 34% 51%,
+        #13f80e 51% 68%,
+        #f80ec9 68% 85%,
+        #f80e0e 85% 100%
+    );
+    height: 10px;
+    z-index: 5;
+    top: inherit;
+    bottom: 0;
+    mix-blend-mode: hard-light;
+    opacity: .7;
+}
+
+
+/* --------------------- GRADE ANIMADA */
+.grid-box,
+.grid,
+.grid:before {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    bottom: 0;
+}
+
+.grid-box {
+    height: 40%;
+    min-height: 300px;
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+
+    display: none;
+}
+
+.grid {
+    position: relative;
+    left: 0;
+    perspective: 20vh;
+    transition: perspective .53s,
+                height .53s;
+}
+.grid:before {
+    content: "";
+    float: left;
+    position: absolute;
+    left: 50%;
+
+    background-image: url("../img/grid.gif");
+    background-size: 35px;
+
+    transform: translateX(-50%) rotate3d(1,0,0,60deg);
+    animation: slide 20s linear infinite;
+    -webkit-animation: slide 20s linear infinite;
+    -webkit-mask-box-image: linear-gradient(transparent 10%, #fff);
+}
+
+@keyframes slide {
+    from { background-position: 0 0; }
+    to { background-position: 0 -400px; }
+}
+@-webkit-keyframes slide {
+    from { background-position: 0 0; }
+    to { background-position: 0 -400px; }
+}
+
+
+/* --------------------- SOMBRA TEXTO */
+.tx-s {
+    text-shadow: 0 2px 0  #4d5254,
+                 0 -2px 0 #4d5254,
+                 -2px 0 0 #4d5254,
+                 2px 0 0  #4d5254,
+                 0 8px 3px rgba(0,0,0,.4);
+}
+
+
+/* --------------------- LINK */
+.link {
+    font-size: 1.4em;
+    text-decoration: none;
+    color: #eeeeee;
+    opacity: .5;
+
+    transition: opacity .33s;
+}
+/* HOVER */
+.link:hover, .link:focus {
+    opacity: 1;
+}
+
+
+/* --------------------- BOTOES */
+.btn {
+    font-family: 'VT323', Helvetica, Tahoma, sans-serif;
+    font-size: 1.6em;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: .05em;
+    line-height: 150%;
+    white-space: nowrap;
+    color: #eeeeee;
+    
+    background: transparent;
+    outline: none;
+    border: 2px solid #eeeeee;
+    border-radius: 6px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    height: calc(100% - 10px);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+
+    filter: drop-shadow(0 2px 0  #4d5254)
+            drop-shadow(0 -2px 0 #4d5254)
+            drop-shadow(-2px 0 0 #4d5254)
+            drop-shadow(2px 0 0  #4d5254)
+            drop-shadow(0 5px 3px rgba(0,0,0,.3));
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: color .22s,
+                border-color .22s;
+}
+.btn:not(:last-child) {
+    margin-right: 10px;
+}
+/* HACK only for Safari */
+@media not all and (min-resolution:.001dpcm) {@media{
+    .btn {
+        border-radius: 0;
+    }
+}}
+
+.btn.gold {
+    color: #ffba00;
+    border-color: #ffba00;
+}
+
+.btn.min {
+    width: 30%;
+}
+
+/* HOVER */
+.btn:hover, .btn:focus {
+    color: #ffba00;
+    border-color: #ffba00;
+}
+.btn.gold:hover, .btn.gold:focus {
+    color: #eeeeee;
+    border-color: #eeeeee;
+}
+
+
+
+
+
+/* • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+CORPO
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •  */
+
+html {
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'VT323', Helvetica, Tahoma, sans-serif;
+    font-size: 23px;
+    font-weight: normal;
+    letter-spacing: 0.03em;
+    color: #eeeeee;
+    
+    background-color: #161616;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+/* --------------------- BORDAS */
+.tv {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+.tv:after {
+    content: "";
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border-style: solid;
+    border-width: 60px;
+    border-color: #161616
+                  #242424
+                  #505050
+                  #242424;
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+}
+
+
+/* --------------------- TELA */
+.screen {
+    background-image: linear-gradient(to bottom, #131313, #272727);
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    border: 2px solid black;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    left: 20px;
+    top: 20px;
+}
+/* sombra interna */
+.screen:before {
+    content: "";
+    float: left;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 80px #000000,
+                inset 0 0 20px #000000;
+}
+
+
+/* CARREGANDO */
+.loading .filter.glitch {
+    mix-blend-mode: color-dodge !important;
+    z-index: 90;
+    opacity: .8 !important;
+    display: block;
+}
+
+.loading .filter.noize {
+    mix-blend-mode: normal !important;
+    opacity: .95 !important;
+    z-index: 80;
+}
+
+.loading .screen-show {
+    visibility: hidden;
+}
+
+
+/* --------------------- CONTAINER */
+.screen-container,
+.screen-show {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.screen-show {
+    padding: 20px;
+}
+
+
+.show {
+    position: relative;
+    z-index: 10;
+}
+
+
+.show-header {
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.channel,
+.log-box,
+.counter {
+    text-transform: uppercase;
+    line-height: 70%;
+
+    box-sizing: border-box;
+    width: 33.333%;
+    user-select: none;
+}
+
+.channel {
+    word-break: break-word;
+    padding-top: 10px;
+}
+
+.counter {
+    text-align: right;
+    padding-top: 10px;
+}
+.counter.off {
+    opacity: .5;
+}
+
+/* ---------- ADD NOVO */
+.add {
+    animation: novoItem .7s;
+    -webkit-animation: novoItem 1s;
+}
+@keyframes novoItem {
+    from { text-shadow: 0 -20px 0 #ffba00; color: #ffba00; }
+    to { text-shadow: 0 0 0 #ffba00; color: #f0f5f5; }
+}
+@-webkit-keyframes novoItem {
+    from { text-shadow: 0 -20px 0 #ffba00; color: #ffba00; }
+    to { text-shadow: 0 0 0 #ffba00; color: #f0f5f5; }
+}
+/* ---------- REMOVE */
+.remove {
+    animation: removeItem .7s;
+    -webkit-animation: removeItem 1s;
+}
+@keyframes removeItem {
+    from { text-shadow: 0 0 0 red; color: #ff1100; }
+    to { text-shadow: 0 20px 0 red; color: #f0f5f5; }
+}
+@-webkit-keyframes removeItem {
+    from { text-shadow: 0 0 0 red; color: #ff1100; }
+    to { text-shadow: 0 20px 0 red; color: #f0f5f5; }
+}
+
+
+
+.log-box {
+    text-align: center;
+}
+
+.logo-top {
+    width: 100%;
+    max-height: 60px;
+    filter: drop-shadow(0 4px 2px rgba(0,0,0,.5))
+            drop-shadow(0 10px 5px rgba(0,0,0,.3));
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+
+.show-content {
+    height: calc(100% - 70px - 70px);
+}
+
+
+.show-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+
+
+
+
+/* • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+PAGINA - INDEX
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •  */
+.screen.wait.index .show-content {
+    height: calc(100% - 70px - 30vh);
+}
+
+.screen.wait.index .show.show-footer {
+    justify-content: end;
+    align-items: initial;
+    flex-direction: column;
+    height: 30vh;
+}
+
+.screen.wait.index .logo-top {
+    position: absolute;
+    top: 15vh;
+    width: 50%;
+    min-width: 200px;
+    max-width: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: inherit;
+}
+
+
+
+
+
+/* • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+PAGINA - BEM VINDO
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •  */
+
+.message {
+    max-width: 500px;
+    padding-top: 5vh;
+    margin: 0 auto;
+}
+
+.message h2 {
+    font-size: 40px;
+    line-height: 70%;
+    
+    padding-bottom: 30px;
+}
+
+.message .txt-box {
+    /* text-align: justify; */
+    font-size: 26px;
+}
+
+.message .txt-box p {
+    padding-bottom: 20px;
+}
+
+.message .txt-box i {
+    color: #ffba00;
+    text-shadow: 0 1px 0 #3512ff,
+                 0 2px 0 #ff1395,
+                 0 3px 0 #b4ff1f;
+
+    animation: colored .5s linear infinite;
+    -webkit-animation: colored .5s linear infinite;
+}
+@keyframes colored {
+    0%   { text-shadow: 0 1px 0 #3512ff, 0 2px 0 #ff1395, 0 3px 0 #b4ff1f; }
+    50%  { text-shadow: 0 1px 0 #b4ff1f, 0 2px 0 #3512ff, 0 3px 0 #ff1395; }
+    100% { text-shadow: 0 1px 0 #ff1395, 0 2px 0 #b4ff1f, 0 3px 0 #3512ff; }
+}
+@-webkit-keyframes colored {
+    0%   { text-shadow: 0 1px 0 #3512ff, 0 2px 0 #ff1395, 0 3px 0 #b4ff1f; }
+    50%  { text-shadow: 0 1px 0 #b4ff1f, 0 2px 0 #3512ff, 0 3px 0 #ff1395; }
+    100% { text-shadow: 0 1px 0 #ff1395, 0 2px 0 #b4ff1f, 0 3px 0 #3512ff; }
+}
+
+
+
+
+
+/* • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+PAGINA - CADASTRO
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •  */
+
+.screen.cadastrar .show-content {
+    display: flex;
+    align-items: center;
+}
+
+.register {
+    max-width: 500px;
+    padding-top: 1vh;
+    margin: 0 auto;
+}
+
+.fieldset {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+}
+
+.fieldset .input,
+.fieldset .input:not(:last-child) {
+    width: 50%;
+    margin-bottom: 0;
+}
+
+
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+    -webkit-text-fill-color: #ffba00 !important;
+}
+
+.input {
+    box-sizing: border-box;
+}
+
+.input:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.input input,
+.input textarea,
+input::placeholder {
+    font-family: 'VT323', Helvetica, Tahoma, sans-serif;
+    font-size: 23px;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+    line-height: 120%;
+    color: #ffba00;
+
+    text-shadow: 0 2px 0  #4d5254,
+                 0 -2px 0 #4d5254,
+                 -2px 0 0 #4d5254,
+                 2px 0 0  #4d5254,
+                 0 5px 3px rgba(0,0,0,.4);
+}
+
+.input input,
+.input textarea {
+    border: none;
+    background: transparent;
+    outline: none;
+    overflow: visible;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 5px;
+}
+
+input::placeholder {
+    overflow: visible;
+}
+
+
+#submit_cadastro {
+    visibility: hidden;
+}
+
+
+.fieldset .input.cidade {
+    width: 65%;
+}
+.fieldset .input.estado {
+    width: 35%;
+}
+
+
+
+
+
+/* • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+PAGINA - WISHLIST
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •  */
+
+.screen.choice .grid-box {
+    display: block;
+}
+
+.screen.choice .grid {
+    perspective: 10vh;
+}
+.screen.choice.catg .grid {
+    perspective: 25vh;
+}
+
+.screen.choice .filter.color-lines {
+    display: none;
+}
+
+
+/* --------------------- CATEGORIAS */
+.categories {
+    box-sizing: border-box;
+    height: 15%;
+}
+
+.category {
+    text-transform: uppercase;
+    font-size: 7vh;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 0 4px 2px rgba(190, 250, 238, 0.5);
+    color: #f0f5f5;
+
+    box-sizing: border-box;
+    display: none;
+}
+.category:not(:last-child) {
+    padding: 0 0 10px 0;
+}
+
+
+.screen.choice.catg .categories {
+    height: auto;
+}
+
+.screen.choice.catg .category,
+.category.select {
+    display: block;
+}
+
+
+
+/* --------------------- PRODUTOS */
+.products {
+    position: relative;
+    box-sizing: border-box;
+    height: calc(100% - 15%);
+}
+
+.screen.choice.catg .products {
+    display: none;
+}
+
+
+.products-run {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.slick-list,
+.slick-track {
+    height: 100%;
+}
+
+
+.product {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+
+    opacity: .8;
+    transform: scale(.8);
+
+    transition: opacity .40s,
+                transform .33s;
+}
+
+.product.slick-current {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.product input {
+    visibility: hidden;
+    position: absolute;
+}
+
+.product-thumb {
+    width: 80%;
+
+    position: relative;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    filter: drop-shadow(0 6px 4px rgba(0,0,0,.3))
+            drop-shadow(0 20px 10px rgba(0,0,0,.5));
+    user-select: none;
+    -webkit-user-drag: none;
+
+    transition: filter .22s;
+}
+/* CHECKED */
+.product.checked img {
+    filter: drop-shadow(0 6px 0 #d8ff00)
+            drop-shadow(0 -6px 0 #d8ff00)
+            drop-shadow(6px 0 0 #d8ff00)
+            drop-shadow(-6px 0 0 #d8ff00);
+    
+    transition: filter .22s;
+}
+
+.product-name {
+    /* font-family: 'Arcade Interlaced', Geneva, Tahoma, sans-serif; */
+    font-size: 30px;
+    text-decoration: none;
+    line-height: 70%;
+    color: #f0f5f5;
+    
+    position: absolute;
+    z-index: 10;
+    top: 80%;
+    
+    left: -20%;
+    opacity: 0;
+
+    transition: opacity .5s,
+                left .8s;
+}
+
+.product.slick-current .product-name {
+    opacity: 1;
+    left: 10%;
+}
+
+
+
+
+
+/* • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+PAGINA - WISTHLIST
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •  */
+
+.wish-list {
+    display: flex;
+    flex-flow: row wrap;
+    padding-top: 10vh;
+}
+
+
+.wish-item {
+    /* box-shadow: inset 0 0 0 10px red; */
+
+    box-sizing: border-box;
+    width: 20%;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+
+.wish-thumb {
+    padding-bottom: 10px;
+}
+
+.wish-thumb img {
+    width: 80%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.wish-name {
+    padding: 0 20px;
+}
+
+
+
+/* • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+------------------------------------------ RESOLUÇÕES
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •  */
+
+@media only screen and (min-width: 1024px) {
+    body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .tv {
+        width: 85%;
+        max-width: 1280px;
+        height: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .products-run {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+    .products-run {
+        width: 100%;
+    }
+
+    .product {
+        margin: 0;
+    }
+
+
+    .wish-item {
+        width: 33.33%;
+    }
+    
+    .wish-thumb img {
+        width: 90%;
+    }
+}
+
+
+
+@media only screen and (max-height: 780px) {
+    .product-thumb {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-height: 700px) {
+    .tv {
+        height: 100%;
+    }
+
+    .product-name {
+        top: 90%;
+    }
+}
+
+@media only screen and (max-height: 580px) {
+    .product-thumb {
+        width: 50%;
+    }
+
+    .screen {
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        top: 10px;
+        left: 10px;
+    }
+
+    .screen-show {
+        padding: 10px;
+    }
+}
+
+
+@media only screen and (max-height: 500px) {
+    html {
+        overflow: auto;
+    }
+
+    body {
+        height: 580px;
+    }
+
+    .screen.cadastrar .show-content {
+        align-items: inherit;
+    }
+}
