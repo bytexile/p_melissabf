@@ -11,9 +11,9 @@ return [
     
     'mysql' => [
         'host'      => 'planum.io',
-        'database'  => 'agen4103_melissa',
-        'user'      => 'agen4103_melissa',
-        'pass'      => 'melissa2019',
+        'database'  => 'planum_melissa',
+        'user'      => 'planum_melissa',
+        'pass'      => '$HVSU,3;mvR]',
         'charset'   => 'utf8',
         'collation' => 'utf8_unicode_ci'
     ]
