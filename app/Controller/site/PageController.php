@@ -301,7 +301,7 @@ class PageController extends BaseController
 
 
 
-    // ---------- VIEW - LISTA DE CATEGORIAS ---------------------
+    // ---------- VIEW - AGRADECIMENTO ---------------------
     public function view_finish()
     {
         if( !Session::get('bf_player') ){
@@ -325,7 +325,18 @@ class PageController extends BaseController
         // DELETA A SESSAO
         // Session::dell();
     }
-
-
     
+
+
+
+
+
+
+
+
+    // ---------- VIEW - AGRADECIMENTO ---------------------
+    public function sendEmail()
+    {
+        echo '<form action="/teste-email"><input type="email" name="email" placeholder="E-mail para enviar"><input type="submit" value="enviar"></form>';
+    }
 }

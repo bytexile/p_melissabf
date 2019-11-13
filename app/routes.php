@@ -15,7 +15,10 @@ $routes = [
     ['/manter-lista',     'site\PageController', 'set_sessWishlist', 'user'],
     ['/wishlist/save',    'site\PageController', 'save_wishlist',    'user'],
 
-    ['/obrigado', 'site\PageController', 'view_finish', 'user']// VIEW
+    ['/obrigado', 'site\PageController', 'view_finish', 'user'],// VIEW
+
+
+    ['/teste-email', 'site\PageController', 'sendEmail', 'free']// VIEW
 ];
 
 return $routes;
