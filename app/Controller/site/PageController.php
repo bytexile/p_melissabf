@@ -354,12 +354,12 @@ class PageController extends BaseController
 
             //REMETENTE --> ESTE EMAIL TEM QUE SER VALIDO DO DOMINIO
             //====================================================
-            $email_remetente = $email; // deve ser uma conta de email do seu dominio
+            $email_remetente = 'sanoj.camargo@gmail.com'; // deve ser uma conta de email do seu dominio
             //====================================================
 
             //Configurações do email, ajustar conforme necessidade
             //====================================================
-            $email_destinatario = $email; // pode ser qualquer email que receberá as mensagens
+            $email_destinatario = 'sanoj.camargo@gmail.com'; // pode ser qualquer email que receberá as mensagens
             $email_reply        = "$email";
             $email_assunto      = "Novo contato de " . $nome . ", pelo site!"; // Este será o assunto da mensagem
             //====================================================
