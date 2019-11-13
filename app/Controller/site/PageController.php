@@ -338,7 +338,7 @@ class PageController extends BaseController
     public function sendEmail($params = null)
     {
         if( !$params ){
-            echo '<form action="/teste-email" method="GET"><input type="email" name="email" placeholder="E-mail para enviar"><input type="submit" value="enviar"></form>';
+            echo '<form action="/teste-email" method="POST"><input type="email" name="email" placeholder="E-mail para enviar"><input type="submit" value="enviar"></form>';
         }
         else {
             echo'<pre>';
