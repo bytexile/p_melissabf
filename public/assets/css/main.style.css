@@ -921,6 +921,10 @@ PAGINA - WISTHLIST
     .product-name {
         top: 90%;
     }
+
+    .gold.btn-obg {
+        font-size: 18px;
+    }
 }
 
 @media only screen and (max-height: 580px) {

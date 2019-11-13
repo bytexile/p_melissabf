@@ -310,14 +310,14 @@ class PageController extends BaseController
 
         // -----
         
-        // @$this->view->tvClass = 'message bottom';
+        // @$this->view->tvClass = 'message bottom'; 
         @$this->view->tvClass = 'wait wait-message topo';
         $this->view->channel  = false;
         $this->view->finish   = true;
         $this->view->title    = 'Arrasou!';
         $this->view->text     = '<p>Obrigada por participar!<br>Agora só esperar as promos incríveis que estamos preparando pra você.</p>';
         $this->view->buttons = [
-            ['classes'=>'gold', 'url'=>'/lista-de-desejos', 'text'=>'Voltar a minha wishlist']
+            ['classes'=>'gold btn-obg', 'url'=>'/lista-de-desejos', 'text'=>'Voltar a minha wishlist']
         ];
 
         $this->renderView('site\mensagem', 'site\layout-v1');
