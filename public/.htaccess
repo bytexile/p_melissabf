@@ -7,5 +7,7 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+    
+    RewriteRule ^(.*)$ https://blackfriday.melissa.com.br/$1 [R,L]
 
 </IfModule>
