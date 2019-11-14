@@ -85,26 +85,12 @@ abstract class BaseController
 
     public function meuIP()
     {
-        $ipaddress = getenv("REMOTE_ADDR") ; 
-        Echo "Your IP Address is " . $ipaddress .'<br>';
-
-
-        echo 'User IP - '.$_SERVER['REMOTE_ADDR'].'<br>';
-
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR']?$_SERVER['HTTP_X_FORWARDED_FOR']:$_SERVER['REMOTE_ADDR'];
         
-        function getUserIpAddr(){
-            if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-                //ip from share internet
-                $ip = $_SERVER['HTTP_CLIENT_IP'];
-            }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-                //ip pass from proxy
-                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-            }else{
-                $ip = $_SERVER['REMOTE_ADDR'];
-            }
-            return $ip;
+        if(strpos($ip,',') !== false) {
+            $ip = substr($ip,0,strpos($ip,','));
         }
-        
-        echo 'User Real IP - '.getUserIpAddr();
+
+        echo'<h1>'.$ip.'</h1>';
     }
 }
