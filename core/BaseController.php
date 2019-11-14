@@ -85,6 +85,13 @@ abstract class BaseController
 
     public function meuIP()
     {
+        $ipaddress = getenv("REMOTE_ADDR") ; 
+        Echo "Your IP Address is " . $ipaddress .'<br>';
+
+
+        echo 'User IP - '.$_SERVER['REMOTE_ADDR'].'<br>';
+
+        
         function getUserIpAddr(){
             if(!empty($_SERVER['HTTP_CLIENT_IP'])){
                 //ip from share internet
