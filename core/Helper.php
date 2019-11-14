@@ -27,10 +27,18 @@ class Helper
     public static function getLocation()
     {
         // Helper::getUserIP();
-        $ip = $_SERVER['REMOTE_ADDR'];
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])){
+            $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+        }
+        else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+            $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+        else {
+            $ip_address = $_SERVER['REMOTE_ADDR'];
+        }
 
         // $getLocation = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip=177.143.207.220'));
-        $getLocation = unserialize( file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip) );
+        $getLocation = unserialize( file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip_address) );
 
         $location = new \stdClass;
 
