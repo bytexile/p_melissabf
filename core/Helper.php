@@ -27,17 +27,7 @@ class Helper
     public static function getLocation()
     {
         // Helper::getUserIP();
-        if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-            //ip from share internet
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        }
-        elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-            //ip pass from proxy
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }
-        else {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
+        $ip = $_SERVER['REMOTE_ADDR'];
 
         // $getLocation = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip=177.143.207.220'));
         $getLocation = unserialize( file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip) );
