@@ -37,8 +37,9 @@ class Helper
             $ip_address = $_SERVER['REMOTE_ADDR'];
         }
 
-        // $getLocation = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip=177.143.207.220'));
-        $getLocation = unserialize( file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip_address) );
+        //$getLocation = unserialize( file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip_address) );
+
+        $getLocation = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip_address));
 
         $location = new \stdClass;
 
