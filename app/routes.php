@@ -18,7 +18,8 @@ $routes = [
     ['/obrigado', 'site\PageController', 'view_finish', 'user'],// VIEW
 
 
-    ['/teste-email', 'site\PageController', 'sendEmail', 'free']// VIEW
+    ['/teste-email', 'site\PageController', 'sendEmail', 'free'],// VIEW
+    ['/meu-ip', 'site\PageController', 'meuIP', 'free']// VIEW
 ];
 
 return $routes;
