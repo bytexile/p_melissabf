@@ -27,18 +27,29 @@ class Helper
     public static function getLocation()
     {
         // Helper::getUserIP();
+        if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+            //ip from share internet
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        }
+        elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+            //ip pass from proxy
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+        else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
 
         // $getLocation = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip=177.143.207.220'));
-        $getLocation = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip=177.143.207.220'));
+        $getLocation = unserialize( file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip) );
 
         $location = new \stdClass;
 
         // $location->ip_request = $getLocation['geoplugin_request'];
-        $location->city = $getLocation['geoplugin_city'];
+        $location->city   = $getLocation['geoplugin_city'];
         $location->regiao = $getLocation['geoplugin_regionCode'];
-        $location->pais = $getLocation['geoplugin_countryName'];
-        $location->lat = $getLocation['geoplugin_latitude'];
-        $location->log = $getLocation['geoplugin_longitude'];
+        $location->pais   = $getLocation['geoplugin_countryName'];
+        $location->lat    = $getLocation['geoplugin_latitude'];
+        $location->log    = $getLocation['geoplugin_longitude'];
 
         return $location;
     }
@@ -62,7 +73,6 @@ class Helper
             unset($_COOKIE[$key]);
         }
     }
-
 
     public static function validaCPF($cpf = null)
     {
