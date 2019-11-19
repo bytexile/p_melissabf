@@ -159,7 +159,7 @@ class PageController extends BaseController
         @$this->view->channel = false;
         $this->view->tvClass  = 'wait wait-message topo';
         $this->view->title    = 'Vamos nessa!';
-        $this->view->text     = '<p>Quer receber vantagens na <i>Black Friday Melissa?</i><p>Você só precisa selecionar as <i>10 Melissas</i> que mais quer e adicionar na sua wish list.<br>No dia <i>26/11</i> você recebe em primeira mão quais Melissas estarão na BF</p>';
+        $this->view->text     = '<p>Quer receber vantagens na <i>Black Friday Melissa?</i><p>Você só precisa selecionar as <i>10 Melissas</i> que mais quer e adicionar na sua wish list.<br>No dia <i>26/11</i> você recebe em primeira mão quais Melissas estarão na BF.</p>';
 
         $this->view->links = false;
         
